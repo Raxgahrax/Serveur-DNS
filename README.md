@@ -6,8 +6,6 @@ Il existe également une partie pour effacer certains domaines qui pourraient av
 Exemple : doctissimo.fr. Il est présent dans les "fake news" trouvés par Steven Black; ajouter ce domaine à votre whitelist et il sera de nouveau accessible ainsi que ses sous-domaines, ceci malgré sa présence dans les listings-sources.
 Le fichier de filtrage utilisé par Unbound étant la propriété de root:root, vous devrez donc lancer le cron de "unbound_dns.sh" depuis ce compte sous peine d'avoir des erreurs de droit d'accès et d'écriture.
 
-Vous aurez également 3 chemins à modifier pour que tout fonctionne :
--- generate-domains-blacklist.py : lignes 128 et 130
--- domains-blacklist.conf : ligne 26
+Vous aurez également 3 chemins à modifier pour que tout fonctionne : "generate-domains-blacklist.py" (lignes 128 et 130) et "domains-blacklist.conf" (ligne 26).
 
 Libre à vous ensuite de modifier les divers urls-sources suivant vos besoins, mais je pense avoir créé quelque chose d'intéressant.
