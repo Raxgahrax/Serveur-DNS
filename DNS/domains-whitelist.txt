@@ -1,0 +1,30 @@
+########
+### Tout domaine écrit ici aussi la priorité sur la dans la liste des domaines blacklistés
+### Ex: forum.doctissimo.fr sera accessible même si il est trouvé dans la liste des domaines blacklistés
+### car doctissimo.fr est présent dans ce fichier.
+########
+
+a-msedge.net
+amazon.com
+appsflyer.com
+azurewebsites.net
+cdnetworks.com
+cloudapp.net
+edgekey.net
+elasticbeanstalk.com
+invalid
+j.mp
+l-msedge.net
+lan
+localdomain
+microsoft.com
+msedge.net
+nsatc.net
+ovh.net
+pusher.com
+pusherapp.com
+spotify.com
+tagcommander.com
+tracker.debian.org
+windows.net
+doctissimo.fr
