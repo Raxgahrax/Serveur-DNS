@@ -1,11 +1,14 @@
 #!/bin/bash
 
 ###
-## Script de lancement
-## Cron sous sudo: 
-## 30 3 * * 0 bash /home/pi/Desktop/DNS/unbound_dns.sh
+## Script de lancement tous les 2 jours à 03h30
+## Cron :
+## 30 3 */2 * * sudo bash /home/pi/Desktop/DNS/Script/unbound_dns.sh
 ###
-
+#Mise à l'heure
+# Une synchro de l'heure semble nécessaire pour pouvoir
+# télécharger les fichiers depuis Github.
+sudo ntpdate 0.ch.pool.ntp.org
 #Arrêt d'Unbound
 sudo service unbound stop
 #Téléchargement des sources
@@ -14,7 +17,7 @@ sleep 5
 #Suppression des lignes non-essentielles (commentaires, etc.)
 sed -i '/^$/d;/#/d;s/www\.//' -i /home/pi/Desktop/DNS/temp/ads.conf
 sleep 5
-#Filtre anti-doublons
+#Suppression des doublons
 sort -u /home/pi/Desktop/DNS/temp/ads.conf > /home/pi/Desktop/DNS/temp/ads_temp.conf
 #Suppression de l'ancien fichier ads.conf
 sudo chown pi:pi /var/lib/unbound/ads.conf
@@ -33,3 +36,6 @@ sudo chmod 644 /var/lib/unbound/ads.conf
 rm -rf /home/pi/Desktop/DNS/temp/*
 #Redémarrage d'Unbound
 sudo service unbound restart
+#Rapport sur log et fin du script
+echo "Rapport de lancement du $(date)" >> /home/pi/Desktop/DNS/Logs/Process.log
+exit
