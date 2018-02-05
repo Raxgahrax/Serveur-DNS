@@ -2,16 +2,15 @@
 
 ###
 ## Script de lancement tous les 2 jours à 03h30
-## Cron :
-## 30 3 */2 * * sudo bash /home/pi/Desktop/DNS/Script/unbound_dns.sh
+## Cron sous Sudo: 30 3 */2 * * bash /home/pi/Desktop/DNS/unbound_dns.sh
 ###
 #Mise à l'heure
-# Une synchro de l'heure semble nécessaire pour pouvoir
-# télécharger les fichiers depuis Github.
 sudo ntpdate 0.ch.pool.ntp.org
 #Arrêt d'Unbound
 sudo service unbound stop
 #Téléchargement des sources
+wget -P /home/pi/Desktop/DNS/temp http://someonewhocares.org/hosts/zero/hosts
+mv /home/pi/Desktop/DNS/temp/hosts /home/pi/Desktop/DNS/temp/hosts.txt
 python /home/pi/Desktop/DNS/generate-domains-blacklist.py > /home/pi/Desktop/DNS/temp/ads.conf
 sleep 5
 #Suppression des lignes non-essentielles (commentaires, etc.)
