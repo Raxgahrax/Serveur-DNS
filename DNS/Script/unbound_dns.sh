@@ -15,6 +15,9 @@ rm /var/lib/unbound/ads.conf
 wget -P /home/pi/Desktop/DNS/temp http://someonewhocares.org/hosts/zero/hosts
 mv /home/pi/Desktop/DNS/temp/hosts /home/pi/Desktop/DNS/temp/hosts.txt
 sleep 1
+wget -P /home/pi/Desktop/DNS/temp http://1hosts.cf
+mv /home/pi/Desktop/DNS/temp/index.html /home/pi/Desktop/DNS/temp/OneHosts.txt
+sleep 1
 wget -P /home/pi/Desktop/DNS/temp/ https://easylist-downloads.adblockplus.org/malwaredomains_full.txt
 sleep 1
 wget -P /home/pi/Desktop/DNS/temp/ https://raw.githubusercontent.com/HexxiumCreations/threat-list/gh-pages/hexxiumthreatlist.txt
