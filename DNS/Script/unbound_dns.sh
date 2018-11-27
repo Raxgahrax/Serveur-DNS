@@ -3,6 +3,7 @@
 ###
 ## Script de lancement tous les 2 jours à 03h30
 ## Cron sous Sudo: 30 3 */2 * * bash /home/pi/Desktop/DNS/unbound_dns.sh
+## https://nlnetlabs.nl/documentation/unbound/howto-optimise/
 ###
 #Mise à l'heure
 sudo ntpdate 0.ch.pool.ntp.org
@@ -15,7 +16,9 @@ rm /var/lib/unbound/ads.conf
 wget -P /home/pi/Desktop/DNS/temp http://someonewhocares.org/hosts/zero/hosts
 mv /home/pi/Desktop/DNS/temp/hosts /home/pi/Desktop/DNS/temp/hosts.txt
 sleep 1
-wget -P /home/pi/Desktop/DNS/temp http://1hosts.cf
+wget -P /home/pi/Desktop/DNS/temp http://1hos.cf
+#https://t.me/badmojr
+#wget -P /home/pi/Desktop/DNS/temp http://1hosts.cf
 mv /home/pi/Desktop/DNS/temp/index.html /home/pi/Desktop/DNS/temp/OneHosts.txt
 sleep 1
 wget -P /home/pi/Desktop/DNS/temp/ https://easylist-downloads.adblockplus.org/malwaredomains_full.txt
