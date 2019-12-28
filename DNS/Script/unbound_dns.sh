@@ -14,16 +14,7 @@ sudo chown odroid:odroid /var/lib/unbound/ads.conf
 rm /var/lib/unbound/ads.conf
 #Téléchargement des sources
 wget -P /home/odroid/Bureau/DNS/temp http://someonewhocares.org/hosts/zero/hosts
-mv /home/odroid/Bureau/DNS/temp/hosts /home/odroid/Bureau/DNS/temp/hosts.txt
-sleep 1
-wget -P /home/odroid/Bureau/DNS/temp http://1hos.cf
-sleep 1
-wget -P /home/odroid/Bureau/DNS/temp http://rlwpx.free.fr/WPFF/htrc.7z
-7z x /home/odroid/Bureau/DNS/temp/htrc.7z
-mv /home/odroid/Hosts.trc /home/odroid/Bureau/DNS/temp/Hosts.trc
-#https://t.me/badmojr
-#wget -P /home/pi/Desktop/DNS/temp http://1hosts.cf
-mv /home/odroid/Bureau/DNS/temp/index.html /home/odroid/Bureau/DNS/temp/OneHosts.txt
+mv /home/odroid/Bureau/DNS/temp/hosts /home/odroid/Bureau/DNS/temp/SomeoneWhoCares_hosts.txt
 sleep 1
 wget -P /home/odroid/Bureau/DNS/temp/ https://easylist-downloads.adblockplus.org/malwaredomains_full.txt
 sleep 1
