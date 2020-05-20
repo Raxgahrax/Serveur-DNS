@@ -1,3 +1,11 @@
+#
+# License: MIT License (MIT)
+# File encoding: UTF-8 Dos/Windows 1252
+# Original maintainer: CHEF-KOCH
+# Notice:	 Last checked 20 Sept. 2019							
+# Version: 0.0.19
+# Homepage: https://raw.githubusercontent.com/CHEF-KOCH/NSABlocklist/master/HOSTS
+#
 0.0.0.0 108.61.165
 0.0.0.0 130.117.50.166
 0.0.0.0 149.14.125.162

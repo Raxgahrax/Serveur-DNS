@@ -1,9 +1,7 @@
 ########
-### Tout domaine écrit ici aussi la priorité sur la dans la liste des domaines blacklistés
-### Ex: forum.doctissimo.fr sera accessible même si il est trouvé dans la liste des domaines blacklistés
-### car doctissimo.fr est présent dans ce fichier.
+### Tout domaine écrit ici aussi la priorité sur les domain blacklist
+### Ex: ad.doctissimo.fr sera accesible même si il est trouvé dans les domains blacklist
 ########
-
 a-msedge.net
 amazon.com
 appsflyer.com
@@ -17,6 +15,7 @@ j.mp
 l-msedge.net
 lan
 localdomain
+localhost
 microsoft.com
 msedge.net
 nsatc.net
@@ -27,4 +26,36 @@ spotify.com
 tagcommander.com
 tracker.debian.org
 windows.net
+sputniknews.com
+rt.com
+francais.rt.com
 doctissimo.fr
+sputniknews.com
+zone-telechargement1.com
+nexusmods.com
+voxeurop.eu
+dropbox.com
+ultimedia.com
+aliexpress.com
+alibaba.com
+alicdn.com
+bit.ly
+t.co
+t.me
+tinyurl.com
+youtu.be
+i.ytimg.com
+live.com
+#Miner Monero
+authedmine.com
+coinhive.com
+#Reddit
+redditmedia.com
+#Facebook
+fbcdn.net
+#Bitcoin
+localbitcoins.com
+fdj.fr
+adf.ly
+#Autres
+queda212..duckdns.org

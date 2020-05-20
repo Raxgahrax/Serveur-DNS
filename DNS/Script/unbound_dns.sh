@@ -5,8 +5,14 @@
 ## Cron sous Sudo: 30 3 */2 * * bash /home/pi/Desktop/DNS/unbound_dns.sh
 ## https://nlnetlabs.nl/documentation/unbound/howto-optimise/
 ###
+
+#Variable
+var="/var/lib/unbound/ads.conf"
+
 #Mise à l'heure
-sudo ntpdate 0.ch.pool.ntp.org
+sudo service ntp stop
+sudo ntpdate pool.ntp.org
+sudo service ntp start
 #Arrêt d'Unbound
 sudo service unbound stop
 #Suppression du fichier actuel
@@ -19,11 +25,23 @@ sleep 1
 wget -P /home/odroid/Bureau/DNS/temp/ https://easylist-downloads.adblockplus.org/malwaredomains_full.txt
 sleep 1
 wget -P /home/odroid/Bureau/DNS/temp/ https://raw.githubusercontent.com/HexxiumCreations/threat-list/gh-pages/hexxiumthreatlist.txt
+sleep 1
+wget -P /home/odroid/Bureau/DNS/temp/ https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-malware.txt
+sleep 1
+wget -P /home/odroid/Bureau/DNS/temp/ https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-blocklist.txt
+sleep 1
+wget -P /home/odroid/Bureau/DNS/temp/ https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV-AGH.txt
+sleep 1
+wget -P /home/odroid/Bureau/DNS/temp/ https://gitlab.com/CHEF-KOCH/cks-filterlist/-/raw/master/hosts/Game.txt
+sleep 1
+wget -P /home/odroid/Bureau/DNS/temp/ https://gitlab.com/CHEF-KOCH/cks-filterlist/-/raw/master/hosts/Ads-tracker.txt
 #Suppression des lignes non-essentielles (commentaires, etc.)
 sleep 5
 sed -i '/^[[!]/d; s/^||//; s/\^$//' /home/odroid/Bureau/DNS/temp/malwaredomains_full.txt
 sleep 5
 sed -i '/^[[!]/d; s/^||//; s/\^$//' /home/odroid/Bureau/DNS/temp/hexxiumthreatlist.txt
+sleep 5
+sed -i '/^[[!]/d; s/^||//; s/\^$//; s/^@@||//' /home/odroid/Bureau/DNS/temp/SmartTV-AGH.txt
 sleep 5
 #Génération du listing
 python /home/odroid/Bureau/DNS/generate-domains-blacklist.py > /home/odroid/Bureau/DNS/temp/ads.conf
@@ -43,8 +61,25 @@ sudo chown root:root /var/lib/unbound/ads.conf
 sudo chmod 644 /var/lib/unbound/ads.conf
 #Suppression des fichiers temporaires
 rm -rf /home/odroid/Bureau/DNS/temp/*
-#Redémarrage d'Unbound
-sudo service unbound restart
-#Rapport sur log et fin du script
-echo "Rapport de lancement du $(date)" >> /home/odroid/Bureau/DNS/Logs/Process.log
-exit
+if [ -s "$var" ]
+then
+   echo "Fichier non vide !"
+   #Redémarrage d'Unbound
+   sudo service unbound restart
+   #Rapport sur log et fin du script
+   echo "Rapport de lancement du $(date)" >> /home/odroid/Bureau/DNS/Logs/Process.log
+   exit
+else
+   i=0
+   while ((i <= 10))
+      do
+      echo "Fichier vide !"
+      #Redémarrage d'Unbound
+      sudo service unbound restart
+      sleep 90s
+      #Lancement script
+      sudo bash /home/odroid/Bureau/DNS/Script/unbound_dns.sh
+	  ((i += 1))
+      done
+   exit
+fi

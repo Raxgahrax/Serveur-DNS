@@ -123,9 +123,9 @@ def blacklists_from_config_file(file, whitelist, ignore_retrieval_failure):
 
 
 argp = argparse.ArgumentParser(description="Create a unified blacklist from a set of local and remote files")
-argp.add_argument("-c", "--config", default="/home/pi/Desktop/DNS/domains-blacklist.conf",
+argp.add_argument("-c", "--config", default="/home/odroid/Bureau/DNS/domains-blacklist.conf",
     help="file containing blacklist sources")
-argp.add_argument("-w", "--whitelist", default="/home/pi/Desktop/DNS/domains-whitelist.txt",
+argp.add_argument("-w", "--whitelist", default="/home/odroid/Bureau/DNS/domains-whitelist.txt",
     help="file containing a set of names to exclude from the blacklist")
 argp.add_argument("-i", "--ignore-retrieval-failure", action='store_true',
     help="generate list even if some urls couldn't be retrieved")
