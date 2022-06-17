@@ -15,8 +15,11 @@ sudo ntpdate pool.ntp.org
 sudo service ntp start
 #Arrêt d'Unbound
 sudo service unbound stop
-#Suppression du fichier actuel
+#Copie fichier actuel
+sudo cp /var/lib/unbound/ads.conf /home/odroid/Bureau/DNS/local/ads.conf_old
+#Modification du propriétaire et suppression du fichier actuel
 sudo chown odroid:odroid /var/lib/unbound/ads.conf
+sudo chown odroid:odroid /home/odroid/Bureau/DNS/local/ads.conf_old
 rm /var/lib/unbound/ads.conf
 #Téléchargement des sources
 wget -P /home/odroid/Bureau/DNS/temp http://someonewhocares.org/hosts/zero/hosts
@@ -70,16 +73,14 @@ then
    echo "Rapport de lancement du $(date)" >> /home/odroid/Bureau/DNS/Logs/Process.log
    exit
 else
-   i=0
-   while ((i <= 10))
-      do
-      echo "Fichier vide !"
-      #Redémarrage d'Unbound
-      sudo service unbound restart
-      sleep 90s
-      #Lancement script
-      sudo bash /home/odroid/Bureau/DNS/Script/unbound_dns.sh
-	  ((i += 1))
-      done
+   echo "Fichier vide !"
+   #Suppression fichier vide
+   sudo chown odroid:odroid /var/lib/unbound/ads.conf
+   rm /var/lib/unbound/ads.conf
+   #Restauration fichier de sauvegarde et fin du script
+   sudo cp /home/odroid/Bureau/DNS/local/ads.conf_old /var/lib/unbound/ads.conf
+   sudo chown root:root /var/lib/unbound/ads.conf
+   #Redémarrage d'Unbound
+   sudo service unbound restart   
    exit
 fi
