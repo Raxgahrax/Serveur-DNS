@@ -1,11 +1,34 @@
-Si vous utilisez Unbound comme serveur DNS local, et que vous utilisez plusieurs sources externes pour vos règles de filtrages.
-Voici un système totalement automatique, repris sur une partie du fonctionnement de DNSCrypt, pour que vous n'ayez plus à vous préoccuper de la mise à jour de vos barrières DNS.
+# Génération du Fichier ads.conf pour Unbound DNS
 
-Il existe également une partie pour effacer certains domaines qui pourraient avoir été rajoutés à la liste finale de filtrage, et dont vous souhaiteriez pouvoir garder l'accès malgré tout.
+Ce projet comprend des scripts pour générer et mettre à jour le fichier `ads.conf`, utilisé par le serveur DNS Unbound pour bloquer l'accès à des domaines malveillants.
 
-Exemple : doctissimo.fr. Il est présent dans les "fake news" trouvés par Steven Black; ajouter ce domaine à votre whitelist et il sera de nouveau accessible ainsi que ses sous-domaines, ceci malgré sa présence dans les listings-sources.
-Le fichier de filtrage utilisé par Unbound étant la propriété de root:root, vous devrez donc lancer le cron du script "unbound_dns.sh" avec la commande "sudo" sous peine d'avoir des erreurs de droit d'accès et d'écriture.
+## Utilisation du Script
 
-Vous aurez également 3 chemins à modifier pour que tout fonctionne : "generate-domains-blacklist.py" (lignes 128 et 130) et "domains-blacklist.conf" (ligne 26).
+### Script Bash (`unbound_dns.sh`)
 
-Libre à vous ensuite de modifier les divers urls-sources suivant vos besoins, mais je pense avoir créé quelque chose d'intéressant.
+Le script bash principal est utilisé comme suit :
+
+1. **Exécution :** L'utilisateur doit exécuter `unbound_dns.sh` pour générer le fichier `ads.conf`.
+2. **Sources de Données :** Le script utilise des listes locales et distantes pour créer une liste consolidée de domaines malveillants.
+3. **Fichiers Additionnels :** Les domaines à exclure peuvent être spécifiés dans le fichier `domains-whitelist.txt`.
+
+### Configuration des Sources
+
+#### Fichier `domains-blacklist.conf`
+
+Ce fichier de configuration détaille les sources de données pour la génération de la liste noire. Il inclut :
+
+- **URLs Distants :** URLs pointant vers des sources en ligne pour récupérer des listes de domaines malveillants.
+- **Fichiers Locaux :** Références à des fichiers locaux contenant des listes, présentes dans le dossier `local`, de domaines à bloquer.
+
+#### Fichier `domains-blacklist-local-additions.txt`
+
+Ce fichier contient des ajouts locaux spécifiques à la liste noire de domaines. Les domaines répertoriés ici seront également bloqués.
+
+## Compréhension des Fichiers de Configuration
+
+Le fichier `domains-blacklist.conf` est crucial pour spécifier les sources de données à utiliser lors de la génération de la liste noire. Il combine des données provenant de sources en ligne et locales pour créer une liste complète de domaines à bloquer.
+
+---
+
+**Note :** Avant d'exécuter le script bash, assurez-vous que les chemins de fichiers et les références locales sont correctement définis dans les fichiers de configuration pour une génération précise du fichier `ads.conf`.
