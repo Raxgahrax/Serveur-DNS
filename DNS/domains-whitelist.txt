@@ -59,3 +59,5 @@ fdj.fr
 adf.ly
 #Autres
 queda212..duckdns.org
+api.darksky.net
+gstatic.com

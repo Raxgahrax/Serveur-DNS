@@ -22,7 +22,6 @@ sudo chown odroid:odroid /var/lib/unbound/ads.conf
 sudo chown odroid:odroid /home/odroid/Bureau/DNS/local/ads.conf_old
 rm /var/lib/unbound/ads.conf
 #Téléchargement des sources
-#Sources Up
 wget -P /home/odroid/Bureau/DNS/temp http://someonewhocares.org/hosts/zero/hosts
 mv /home/odroid/Bureau/DNS/temp/hosts /home/odroid/Bureau/DNS/temp/SomeoneWhoCares_hosts.txt
 sleep 1
@@ -33,17 +32,12 @@ sleep 1
 wget -P /home/odroid/Bureau/DNS/temp/ https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-blocklist.txt
 sleep 1
 wget -P /home/odroid/Bureau/DNS/temp/ https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV-AGH.txt
-#Sources Down
 sleep 1
-wget -P /home/odroid/Bureau/DNS/temp/ https://easylist-downloads.adblockplus.org/malwaredomains_full.txt
-sleep 1
-wget -P /home/odroid/Bureau/DNS/temp/ https://gitlab.com/CHEF-KOCH/cks-filterlist/-/raw/master/hosts/Game.txt
-sleep 1
-wget -P /home/odroid/Bureau/DNS/temp/ https://gitlab.com/CHEF-KOCH/cks-filterlist/-/raw/master/hosts/Ads-tracker.txt
+wget -P /home/odroid/Bureau/DNS/temp/ https://raw.githubusercontent.com/ngosang/trackerslist/master/blacklist.txt -O /home/odroid/Bureau/DNS/temp/trackers.txt
 #Suppression des lignes non-essentielles (commentaires, etc.)
 sleep 5
-#sed -i '/^[[!]/d; s/^||//; s/\^$//' /home/odroid/Bureau/DNS/temp/malwaredomains_full.txt
-sed -i '/^[[!]/d; s/^||//; s/\^$//' /home/odroid/Bureau/DNS/local/Malwaredomains_full.txt
+sed -E 's/^(http|https|udp|ws|wss):\/\///' "/home/odroid/Bureau/DNS/temp/trackers.txt" > "/home/odroid/Bureau/DNS/temp/trackers_1.txt"
+awk -F/ '{split($1, arr, ":"); print arr[1]}' "/home/odroid/Bureau/DNS/temp/trackers_1.txt" > "/home/odroid/Bureau/DNS/temp/trackers_torrents.txt"
 sleep 5
 sed -i '/^[[!]/d; s/^||//; s/\^$//' /home/odroid/Bureau/DNS/temp/hexxiumthreatlist.txt
 sleep 5
@@ -53,7 +47,8 @@ sleep 5
 python2.7 /home/odroid/Bureau/DNS/generate-domains-blacklist.py > /home/odroid/Bureau/DNS/temp/ads.conf
 #Suppression des lignes non-essentielles (commentaires, etc.)
 sed -i '/^$/d;/#/d;s/www\.//' -i /home/odroid/Bureau/DNS/temp/ads.conf
-#Suppression des doublons
+#Suppression des doublons et des doubles points
+sed -i 's/\.\./\./g' /home/odroid/Bureau/DNS/temp/ads.conf
 sort -u /home/odroid/Bureau/DNS/temp/ads.conf > /home/odroid/Bureau/DNS/temp/ads_temp.conf
 sleep 5
 #Mise en page du futur ads.conf

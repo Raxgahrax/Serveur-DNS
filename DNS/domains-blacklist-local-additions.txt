@@ -20,9 +20,11 @@ titangelx.com
 trust.com-mobilehealth.biz
 trust.com-securitynotice.biz
 violetataylor.ru
+
 ####
 ## Télémétrie Windows / Pub Skype
 ####
+
 app6419.streaming-server73-location3.loan
 a-0001.a-msedge.net
 a-0002.a-msedge.net
@@ -84,10 +86,12 @@ ww58.2-01-275d-0005.cdx.cedexis.net
 ww58-itx4.smartadserver.com
 ww58.smartadserver.com
 184-86-53-99.deploy.static.akamaitechnologies.com
+
 ####
 ## Commonly blacklisted domains
 ## www.discourse.pi-hole.net/t/commonly-blacklisted-domains/305
 ####
+
 a.stat.xiaomi.com
 abtest.mistat.xiaomi.com
 ad.lgappstv.com
@@ -178,13 +182,24 @@ jobiterra.com
 understandablerequirechoke.com
 greenadblocker.com
 12facebook.s3.eu-west-3.amazonaws.com
+
+
+####
+## Altium
+####
+
+portal365.altium.com
+portal365.altium.com.cn
+
 ####
 ## Autres
 ####
+
 a.ads1.msn.com
 a.ads2.msads.net
 a.ads2.msn.com
 a.rad.msn.com
+aax.amazon-adsystem.com
 ac3.msn.com
 activity.windows.com
 ad.doubleclick.net
@@ -261,3 +276,38 @@ d2pv3oqhufzbtf.cloudfront.net
 mopub.com
 applovin.com
 applvn.com
+config.ads.vungle.com
+
+####
+## TikTok
+####
+
+v16a.tiktokcdn.com
+p16-tiktokcdn-com.akamaized.net
+log.tiktokv.com
+ib.tiktokv.com
+api-h2.tiktokv.com
+v16m.tiktokcdn.com
+api.tiktokv.com
+v19.tiktokcdn.com
+mon.musical.ly
+api2-16-h2.musical.ly
+api2.musical.ly
+log2.musical.ly
+api2-21-h2.musical.ly
+api-h2.tiktokv.com
+api.tiktokv.com
+api21-h2.tiktokv.com
+ib.tiktokv.com
+m.tiktok.com
+muscdn.com
+tiktokcdn.com
+tiktokcdn.com.c.worldfcdn.com
+tiktok.com
+api-h2.tiktokv.com
+api21-h2.tiktokv.com
+ns-440.awsdns-55.com
+ns-722.awsdns-26.net
+ns-1475.awsdns-56.org
+ns-1574.awsdns-04.co.uk
+tiktokcdn-com.akamaized.net
